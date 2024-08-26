@@ -4,6 +4,7 @@ import { getData } from "./services/fetch";
 
 function App() {
   const [data] = createResource(getData);
+  console.log("🚀 ~ App ~ data:", data());
 
   return (
     <div>
