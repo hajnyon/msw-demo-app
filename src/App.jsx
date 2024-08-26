@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { createResource } from "solid-js";
+import Card from "./components/Card";
+import { getData } from "./services/fetch";
 
 function App() {
+  const [data] = createResource(getData);
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
+    <div>
+      <header>
+        <h1>Pringles battle</h1>
       </header>
+      <main
+        style={{
+          display: "flex",
+          "justify-content": "space-between",
+        }}
+      >
+        <Show when={data.loading}>
+          <p>Loading...</p>
+        </Show>
+        <Switch>
+          <Match when={data.error}>
+            <span>Error: {data.error()}</span>
+          </Match>
+          <Match when={data()}>
+            <For each={data()}>{(item) => <Card data={item} />}</For>
+          </Match>
+        </Switch>
+      </main>
     </div>
   );
 }
