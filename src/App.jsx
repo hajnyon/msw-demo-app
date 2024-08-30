@@ -4,7 +4,6 @@ import { getData } from "./services/fetch";
 
 function App() {
   const [data] = createResource(getData);
-  console.log("🚀 ~ App ~ data:", data());
 
   return (
     <div>
@@ -22,7 +21,7 @@ function App() {
         </Show>
         <Switch>
           <Match when={data.error}>
-            <span>Error: {data.error()}</span>
+            <span>Error: {data.error.message}</span>
           </Match>
           <Match when={data()}>
             <For each={data()}>{(item) => <Card data={item} />}</For>
