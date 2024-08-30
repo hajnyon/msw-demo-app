@@ -8,20 +8,20 @@ import { initWs } from "./services/ws";
 const root = document.getElementById("root");
 
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
-  throw new Error(
-    "Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?"
-  );
+	throw new Error(
+		"Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got misspelled?",
+	);
 }
 
 async function enableMocking() {
-  if (import.meta.env.VITE_ENABLE_MSW !== "true") {
-    return;
-  }
-  const { worker } = await import("./mocks/browser");
-  await worker.start();
+	if (import.meta.env.VITE_ENABLE_MSW !== "true") {
+		return;
+	}
+	const { worker } = await import("./mocks/browser");
+	await worker.start();
 }
 
 enableMocking().then(() => {
-  initWs();
-  render(() => <App />, root);
+	initWs();
+	render(() => <App />, root);
 });

@@ -3,10 +3,14 @@
 	"organizeImports": {
 		"enabled": true
 	},
+	"formatter": {
+		"ignore": ["public/**"]
+	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true
-		}
+		},
+		"ignore": ["public/**"]
 	}
 }
