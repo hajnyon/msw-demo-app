@@ -3,6 +3,7 @@ import { render } from "solid-js/web";
 
 import "./index.css";
 import App from "./App";
+import { initWs } from "./services/ws";
 
 const root = document.getElementById("root");
 
@@ -17,9 +18,10 @@ async function enableMocking() {
     return;
   }
   const { worker } = await import("./mocks/browser");
-  return worker.start();
+  await worker.start();
 }
 
 enableMocking().then(() => {
+  initWs();
   render(() => <App />, root);
 });
