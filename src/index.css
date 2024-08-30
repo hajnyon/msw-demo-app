@@ -11,3 +11,7 @@ img {
   margin: auto;
   display: block;
 }
+
+button {
+  width: 100%;
+}
