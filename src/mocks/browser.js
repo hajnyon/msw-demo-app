@@ -9,24 +9,32 @@ const mockData = [
 const wsLink = ws.link("ws://localhost:8080");
 
 export const worker = setupWorker(
+	// REST API mocking
+	http.get("/api/v1/data", () => HttpResponse.json(mockData)),
+	// passthrough
 	http.get("*.png", () => {
 		return passthrough();
 	}),
-
-	http.get("/api/v1/data", () => HttpResponse.json(mockData)),
-
+	// WS mocking
 	wsLink.on("connection", ({ client }) => {
 		client.addEventListener("message", (event) => {
+			console.log("🚀 ~ client.addEventListener ~ event:", event);
 			const data = JSON.parse(event.data);
-			if (data.action === "INCREMENT") {
-				const mockedResponse = {
-					id: data.id,
-					votesInc: 1,
-				};
-				if (data.id === 1) {
-					mockedResponse.votesInc = 2;
+			switch (data.action) {
+				case "INCREMENT": {
+					const mockedResponse = {
+						id: data.id,
+						votesInc: 1,
+					};
+					if (data.id === 1) {
+						mockedResponse.votesInc = 5;
+					}
+					client.send(JSON.stringify(mockedResponse));
+					break;
 				}
-				client.send(JSON.stringify(mockedResponse));
+				default:
+					client.send(JSON.stringify(data));
+					break;
 			}
 		});
 	}),
