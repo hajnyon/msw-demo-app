@@ -6,7 +6,7 @@ It was created as part of my presentation on [Frontkon](https://www.frontkon.cz/
 
 - Frontkon talk (link TBA)
 - internal [Cookielab.io](https://cookielab.io) talk _(my dry-run)_
-- associated blog post (link TBA)
+- associated [blog post](https://www.cookielab.io/blog/mock-service-worker-vyuziti-pro-testovani-i-vyvoj)
 
 ## Usage
 
