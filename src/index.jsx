@@ -18,7 +18,15 @@ async function enableMocking() {
 		return;
 	}
 	const { worker } = await import("./mocks/browser");
-	await worker.start();
+	await worker.start({
+		onUnhandedRequest(request, print) {
+			if (/\.(png|jpg|jpeg|svg|gif)$/.test(request.url.href)) {
+				return;
+			}
+
+			print.warning();
+		}
+	});
 }
 
 enableMocking().then(() => {

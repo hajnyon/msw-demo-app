@@ -11,10 +11,6 @@ const wsLink = ws.link("ws://localhost:8080");
 export const worker = setupWorker(
 	// REST API mocking
 	http.get("/api/v1/data", () => HttpResponse.json(mockData)),
-	// passthrough
-	http.get("*.png", () => {
-		return passthrough();
-	}),
 	// WS mocking
 	wsLink.on("connection", ({ client }) => {
 		client.addEventListener("message", (event) => {
