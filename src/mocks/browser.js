@@ -1,4 +1,4 @@
-import { http, HttpResponse, passthrough, ws } from "msw";
+import { http, HttpResponse, ws } from "msw";
 import { setupWorker } from "msw/browser";
 
 const mockData = [
