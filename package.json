@@ -18,7 +18,7 @@
 		"vite-plugin-solid": "^2.8.2"
 	},
 	"dependencies": {
-		"msw": "^2.3.0-ws.rc-7",
+		"msw": "^2.6.4",
 		"solid-js": "^1.8.11"
 	}
 }
