@@ -1,4 +1,4 @@
-import { http, HttpResponse, passthrough, ws } from "msw";
+import { http, HttpResponse, ws } from "msw";
 import { setupWorker } from "msw/browser";
 
 const mockData = [
@@ -12,9 +12,8 @@ export const worker = setupWorker(
 	// REST API mocking
 	http.get("/api/v1/data", () => HttpResponse.json(mockData)),
 	// WS mocking
-	wsLink.on("connection", ({ client }) => {
+	wsLink.addEventListener("connection", ({ client }) => {
 		client.addEventListener("message", (event) => {
-			console.log("🚀 ~ client.addEventListener ~ event:", event);
 			const data = JSON.parse(event.data);
 			switch (data.action) {
 				case "INCREMENT": {
