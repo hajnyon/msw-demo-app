@@ -2,9 +2,9 @@
 
 This is a simple app to demonstrate [MSW](https://mswjs.io) library.
 
-It was created as part of my presentation on [Frontkon](https://www.frontkon.cz/) conference:
+It was created as part of my presentation on [Frontkon](https://www.frontkon.cz/) 2024 conference:
 
-- Frontkon talk (link TBA)
+- [Frontkon talk](https://www.youtube.com/watch?v=QTN5kgc0FFo)
 - internal [Cookielab.io](https://cookielab.io) talk _(my dry-run)_
 - associated [blog post](https://www.cookielab.io/blog/mock-service-worker-vyuziti-pro-testovani-i-vyvoj)
 
